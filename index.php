@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Resa_VVA - Connexion</title>
+        <title>Resa_VVA</title>
         <script src="jscss/fonctions.js"></script>
         <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
 
@@ -23,7 +23,7 @@ and open the template in the editor.
         } elseif (isset($_SESSION['TYPECOMPTE']) && $_SESSION['TYPECOMPTE'] == 'vil') {
             header('Location: reservation.php');
         } elseif (isset($_SESSION['TYPECOMPTE']) && $_SESSION['TYPECOMPTE'] == 'ges') {
-            header('Location: gestionnaire.php');
+            header('Location: gestion/gestion.php');
         }
     ?>
     
@@ -53,6 +53,11 @@ and open the template in the editor.
                 <tr colspan="2" class="centrer">
                     <td>
                         <input type="submit" value="Connexion" />
+                    </td>
+                </tr>
+                <tr colspan="2" class="centrer">
+                    <td>
+                        <a href="recherche.php">Recherche d'hébergement</a>
                     </td>
                 </tr>
             </FORM>

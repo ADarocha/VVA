@@ -37,12 +37,7 @@ if (mysqli_num_rows($res) == 0) {
 }
 else
 {
-    
-}
-?>
-
-<table>
-    
+    echo"<table>
     <tr>
         <td>Nom :</td>
         <td>Photos :</td>
@@ -54,8 +49,6 @@ else
         <td>Orientation :</td>
         <td>Description :</td>
     </tr>
-    
-    
-    
-    
-</table>
+</table>";
+}
+?>
