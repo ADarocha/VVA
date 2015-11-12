@@ -17,7 +17,7 @@ if (mysqli_num_rows($res) == 0) {
     if ($ligne['TYPECOMPTE'] == "ges") {
         $_SESSION['LOGIN'] = $ligne['LOGIN'];
         $_SESSION['TYPECOMPTE'] = $ligne['TYPECOMPTE'];
-        header('Location: ../gestion.php');        
+        header('Location: ../gestion/gestion.php');        
         
     } elseif ($ligne['TYPECOMPTE'] == "vil") {
         $_SESSION['LOGIN'] = $ligne['LOGIN'];
@@ -31,7 +31,6 @@ if (mysqli_num_rows($res) == 0) {
         // numéro du villageois en variable de session
         $_SESSION['noVil'] = $ligne2['NOVILLAGEOIS'];
         header('Location: ../reservation.php');
-        
         
     } elseif ($ligne['TYPECOMPTE'] == "adm") {
         $_SESSION['LOGIN'] = $ligne['LOGIN'];

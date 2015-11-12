@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Resa_VVA - Création d'hébergement</title>
+    <title>Resa_VVA - Modification</title>
 </head>
 
 <?php
@@ -22,23 +22,29 @@ if ($_POST['internet'] == "oui") {
 }
 
 //Création de l'hebergement
-$req2 = "INSERT INTO HEBERGEMENT(NOHEB, CODETYPEHEB,NOMHEB,NBPLACEHEB,SURFACEHEB,INTERNET,ANNEEHEB,SECTEURHEB,ORIENTATIONHEB,ETATHEB,DESCRIHEB,PHOTOHEB)
-        VALUES(NULL,'".$ligne['CODETYPEHEB']."','".$_POST['nomHeb']."',".$_POST['nbplaces'].",".$_POST['surface'].",".$internet.",".$_POST['annee'].",'".$_POST['secteur']."','".$_POST['orientation']."','".$_POST['etat']."','".$_POST['description']."','".$_POST['photo']."')";
+$req2 = "UPDATE HEBERGEMENT SET CODETYPEHEB ='".$ligne['CODETYPEHEB']."',NOMHEB='".$_POST['nomHeb']."',NBPLACEHEB=".$_POST['nbplaces'].",SURFACEHEB=".$_POST['surface'].",INTERNET=".$internet.",ANNEEHEB=".$_POST['annee'].",SECTEURHEB='".$_POST['secteur']."',ORIENTATIONHEB='".$_POST['orientation']."',ETATHEB='".$_POST['etat']."',DESCRIHEB='".$_POST['description']."',PHOTOHEB='".$_POST['photo']."'
+        WHERE NOMHEB = '".$_GET['heb']."'";
 $res2 = mysqli_query($con, $req2);
+
+
+//CONTINUER ICI A FAIRE DES UPDATES
+
 
 $req3 = "SELECT NOHEB FROM HEBERGEMENT WHERE NOMHEB = '".$_POST['nomHeb']."'";
 $res3 = mysqli_query($con, $req3);
 $ligne3 = mysqli_fetch_array($res3);
 
-$req4 = "INSERT INTO TARIF(NOHEB, CODESAISON, PRIXHEB)
-        VALUES(".$ligne3['NOHEB'].",'1',".$_POST['tarifhs']."),(".$ligne3['NOHEB'].",'2',".$_POST['tarifbs'].")";
+$req4 = "UPDATE TARIF SET PRIXHEB = ".$_POST['tarifhs']." WHERE NOHEB = ".$ligne3['NOHEB']." AND CODESAISON = 1";
 $res4 = mysqli_query($con, $req4);
+
+$req5 = "UPDATE TARIF SET PRIXHEB = ".$_POST['tarifbs']." WHERE NOHEB = ".$ligne3['NOHEB']." AND CODESAISON = 2";
+$res5 = mysqli_query($con, $req5);
         
         
 if($_POST['nomHeb']==""|| $_POST['surface']== 0 || $_POST['annee'] == 0 || $_POST['secteur']=="" || $_POST['etat']==""|| $_POST['description']==""|| $_POST['photo']=="" || $_POST['tarifbs'] == 0 || $_POST['tarifhs']==0)
 {
     echo"Vous n'avez pas renseigner tous les champs.</br>";
-    echo"<a href='../gestion/creerhab.php'>Retourner au formulaire de création</a>";
+    echo"<a href='../gestion/modifheb.php?heb=".$_GET['heb']."'>Retourner à la modification</a>";
 }
 else
 {

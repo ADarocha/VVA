@@ -20,7 +20,7 @@ session_start();
                 </tr>
                 <tr>
                     <td>
-                        <a href='hebergements.php'>Consulter / Modifier les hébergements et leurs réservations</a>
+                        <a href='../hebergements.php'>Consulter / Modifier les hébergements et leurs réservations</a>
                     </td>
                 </tr>
                 <tr>
