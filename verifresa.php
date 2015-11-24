@@ -4,7 +4,7 @@
 <?php
 session_start(); //démarrage session
 //Requête pour vérifier si l'herbergement sélectionné est déjà réservé ou non
-include 'controles/sql.php';
+include 'modele/sql.php';
 $req = "SELECT resa.DATEDEBSEM, resa.NOHEB
                 FROM resa, hebergement
                 WHERE resa.NOHEB = hebergement.NOHEB
@@ -77,7 +77,7 @@ else {
         </td>
     </tr>
     <tr>
-        <td>Nombre de places : <select name='nbplaces'>
+        <td>Nombre de places : <select name='nbplaces2'>
                 ";
     for ($i = 1; $i <= $nbPlaces; $i++) {
         echo '<option>' . $i . '</option>';

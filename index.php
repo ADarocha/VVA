@@ -33,7 +33,7 @@ and open the template in the editor.
 
         <!--formulaire de connexion-->
         <TABLE>
-            <FORM id="formulaire" method="post" action="controles/connexion.php" onsubmit="return VerificationChamps()"> 
+            <FORM id="formulaire" method="post" action="modele/connexion.php" onsubmit="return VerificationChamps()"> 
                 <tr>
                     <td>
                         Nom d'utilisateur : 

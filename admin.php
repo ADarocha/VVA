@@ -16,7 +16,7 @@
 <!--formulaire de création d'un utilisateur !-->
 
 
-<FORM id="formulaire" method="post" action="controles/deconnexion.php">
+<FORM id="formulaire" method="post" action="modele/deconnexion.php">
     <input type="submit" value="deconnexion" />
 </FORM>
 

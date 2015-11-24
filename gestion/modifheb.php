@@ -1,7 +1,7 @@
 <?php
 //création d'hébergement
 session_start();
-include '../controles/sql.php';
+include '../modele/sql.php';
 $heb = $_GET['heb'];
 
 
@@ -24,11 +24,11 @@ $ligne = mysqli_fetch_array($res);
 ?>
 
 <body>
-    <form id="creer" method="post" action="../controles/modifierheb.php?heb=<?php echo $heb; ?>">
+    <form id="creer" method="post" action="../modele/modifierheb.php?heb=<?php echo $heb; ?>">
         <table>
             <tr>
                 <td colspan='2' align='center'>
-                    Création d'un hebergement
+                    modification de <?php echo $ligne['NOMHEB'];?>
                 </td>
             </tr>
             <tr>
@@ -47,16 +47,16 @@ $ligne = mysqli_fetch_array($res);
                         $ligne2 = mysqli_fetch_array($res2);
                         for ($i = 0; $i < count($ligne2); $i++) 
                         {
-                            /*if ($ligne2['NOMTYPEHEB'] == $ligne ['NOMTYPEHEB']) 
+                            if ($ligne2['NOMTYPEHEB'] == $ligne ['NOMTYPEHEB']) 
                                 {
                                 echo '<option selected>' . $ligne2['NOMTYPEHEB'] . '</option>';
-                                $ligne2 = mysqli_fetch_array($res);
+                                $ligne2 = mysqli_fetch_array($res2);
                                 } 
                             else 
-                                {*/
+                                {
                                 echo '<option>' . $ligne2['NOMTYPEHEB'] . '</option>';
-                                $ligne2 = mysqli_fetch_array($res);
-                                //}
+                                $ligne2 = mysqli_fetch_array($res2);
+                                }
                             
                         }
                         ?>
@@ -93,8 +93,8 @@ $ligne = mysqli_fetch_array($res);
                 <td>Internet :</td>
                 <td>
                     <select name="internet">
-                        <option<?php //if ($ligne['INTERNET'] == 1){echo "selected";} ?>>Oui</option>
-                        <option<?php //if ($ligne['INTERNET'] == 0){echo "selected";} ?>>Non</option>
+                        <option>Oui</option>
+                        <option>Non</option>
                     </select>
                 </td>
             </tr>

@@ -1,7 +1,7 @@
 <?php
 //création d'hébergement
 session_start();
-include '../controles/sql.php';
+include '../modele/sql.php';
 ?>
 
 
@@ -13,7 +13,7 @@ include '../controles/sql.php';
 </head>
 
 <body>
-    <form id="creer" method="post" action="../controles/creaheb.php">
+    <form id="creer" method="post" action="../modele/creaheb.php">
         <table>
             <tr>
                 <td colspan='2' align='center'>

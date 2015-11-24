@@ -4,9 +4,8 @@ session_start();
 
 
 //nombre de places choisie en variable de session
-if (!isset($_SESSION['nbPlaces'])) {
-    $_SESSION['nbPlaces'] = $_POST['nbplaces'];
-}
+if (!isset($_GET['page'])){
+$_SESSION['nbPlaces'] = $_POST['nbplaces2'];}
 
 
 //récapitulatif de la réservation
@@ -45,12 +44,20 @@ echo"<table>
             Tarif retenu :
         </td>
         <td>
-            " . $_SESSION['tarif'] . "
+            " . $_SESSION['tarif'] . "€
         </td>
     </tr>
     <tr colspan='2'>
         <td>
-            <form id='form' method='post' action='controles/reservationsql.php'>
+            Montant des arrhes :
+        </td>
+        <td>
+            " . $_SESSION['tarif'] * 0.5 . "€
+        </td>
+    </tr>
+    <tr colspan='2'>
+        <td>
+            <form id='form' method='post' action='modele/reservationsql.php'>
                 <input type='submit' value='Confirmer la réservation'/>
             </form>
         </td>

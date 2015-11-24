@@ -14,7 +14,7 @@
 
         <?php
         session_start();
-        include 'controles/sql.php';
+        include 'modele/sql.php';
 
 
         $req = "SELECT * FROM HEBERGEMENT, TARIF, TYPE_HEB WHERE HEBERGEMENT.NOHEB = TARIF.NOHEB AND HEBERGEMENT.CODETYPEHEB = TYPE_HEB.CODETYPEHEB AND TARIF.CODESAISON = 1";
@@ -95,6 +95,9 @@
             {
                 echo"<form action='gestion/modifheb.php?heb=".$ligne['NOMHEB']."' method='post'>
                     <input type='submit' name='btModif' value='Modifier' />
+                    </form>";
+                echo"<form action='gestion/supprheb.php?heb=".$ligne['NOMHEB']."' method='post'>
+                    <input type='submit' name='btSupprimer' value='Supprimer' />
                     </form>";
             }
             

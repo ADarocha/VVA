@@ -7,8 +7,8 @@
 <?php
 session_start(); //démarrage session
 // on vérifie que le login et le mot de passe existent dans la bdd
-include 'controles/sql.php';
-$req = "SELECT NOMHEB
+include 'modele/sql.php';
+$req = "SELECT NOMHEB, (SELECT count(*) FROM HEBERGEMENT) as nb
                 FROM hebergement"; //recupère le nom des hébergements
 $res = mysqli_query($con, $req);
 $ligne = mysqli_fetch_array($res);
@@ -26,7 +26,7 @@ $ligne = mysqli_fetch_array($res);
                 <td>
                     <select name="hebergement">
                         <?php
-                        for ($i = 0; $i < count($ligne); $i++) { //pour chaque ligne de résultat
+                        for ($i = 0; $i < $ligne['nb']; $i++) { //pour chaque ligne de résultat
                             echo '<option>' . $ligne['NOMHEB'] . '</option>'; //le nom de l'hebergement dans la liste
                             $ligne = mysqli_fetch_array($res); //on passe à la ligne suivante
                         }
@@ -36,22 +36,25 @@ $ligne = mysqli_fetch_array($res);
             </tr>
 
             <?php
-            $req2 = "SELECT DATEDEBSEM, DATEFINSEM
+            $req2 = "SELECT DATEDEBSEM, DATEFINSEM, (SELECT count(*) FROM SEMAINE) as nb
                 FROM semaine"; //recupère le nom des hébergements
             $res2 = mysqli_query($con, $req2);
             $ligne2 = mysqli_fetch_array($res2);
-            ?>
-
+            $nb = $ligne2['nb'];
+            $date = date("Y-m-d");
+                    ?>
 
             <tr>
                 <td>
                     Semaine :
                 </td>
-                <td>
+                <td>               
                     <select name="semaine">
                         <?php
-                        for ($i = 0; $i < count($ligne2); $i++) { //pour chaque ligne de résultat
+                        for ($i = 0; $i < $nb; $i++) { //pour chaque ligne de résultat
+                            if($ligne2['DATEDEBSEM'] > $date){
                             echo '<option>' . $ligne2['DATEDEBSEM'] . ' au ' . $ligne2['DATEFINSEM'] . '</option>'; //le nom de l'hebergement dans la liste
+                            }
                             $ligne2 = mysqli_fetch_array($res2); //on passe à la ligne suivante
                         }
                         ?>

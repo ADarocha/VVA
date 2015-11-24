@@ -11,7 +11,7 @@
 
 session_start(); //démarrage session
 // on vérifie que le login et le mot de passe existent dans la bdd
-include 'controles/sql.php'; //connexion à la bdd
+include 'modele/sql.php'; //connexion à la bdd
 $req = " SELECT * 
     FROM hebergement
     WHERE NOMHEB <> 'PISTACHE AUX NOISETTES' "; //requete pour récuperer login + mdp
