@@ -1,7 +1,11 @@
 <?php
 //création d'hébergement
 session_start();
-include '../modele/sql.php';
+include '../bdd/sql.php';
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
+
+    header("Location:../index.php");
+}
 ?>
 
 
@@ -13,7 +17,7 @@ include '../modele/sql.php';
 </head>
 
 <body>
-    <form id="creer" method="post" action="../modele/creaheb.php">
+    <form id="creer" method="post" action="../bdd/creaheb.php">
         <table>
             <tr>
                 <td colspan='2' align='center'>
@@ -24,7 +28,7 @@ include '../modele/sql.php';
                 <td>Nom :</td>
                 <td><input id="nomHeb" name="nomHeb" type="text"/> 25 caractères max.</td>
             </tr>
-            
+
             <tr>
                 <td>Type :</td>
                 <td><select name="type">
@@ -35,13 +39,13 @@ include '../modele/sql.php';
                         $res = mysqli_query($con, $req);
                         $ligne = mysqli_fetch_array($res);
                         for ($i = 0; $i < count($ligne); $i++) {
-                            echo '<option>' . $ligne['NOMTYPEHEB'] . '</option>'; 
+                            echo '<option>' . $ligne['NOMTYPEHEB'] . '</option>';
                             $ligne = mysqli_fetch_array($res);
-                        } 
-                            ?>
+                        }
+                        ?>
                     </select></td>
             </tr>
-            
+
             <tr>
                 <td>Nombre de personnes max. :</td>
                 <td>
@@ -54,17 +58,17 @@ include '../modele/sql.php';
                     </select>
                 </td>   
             </tr>
-            
+
             <tr>
                 <td>Surface :</td>
                 <td><input id="surface" name="surface" type="number"/> m²</td>
             </tr> 
-            
+
             <tr>
                 <td>Année :</td>
                 <td><input id="annee" name="annee" type="number"/></td>
             </tr>
-            
+
             <tr>
                 <td>Internet :</td>
                 <td>
@@ -74,7 +78,7 @@ include '../modele/sql.php';
                     </select>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>Secteur :</td>
                 <td><input id="secteur" name="secteur" type="text"/></td>
@@ -91,34 +95,34 @@ include '../modele/sql.php';
                     </select>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>Etat :</td>
                 <td><input id="etat" name="etat" type="text"/> 32 caractères max.</td>
             </tr>
-            
-            
+
+
             <tr>
                 <td>tarif haute saison :</td>
                 <td><input id="tarifhs" name="tarifhs" type="number"/></td>
             </tr>
-            
+
             <tr>
                 <td>tarif basse saison :</td>
                 <td><input id="tarifbs" name="tarifbs" type="number"/></td>
             </tr>
-            
-            
+
+
             <tr>
                 <td>Description :</td>
                 <td><input id="description" name="description" type="text"/> 200 caractères max.</td>
             </tr>
-            
+
             <tr>
                 <td>Photo (url):</td>
                 <td><input id="photo" name="photo" type="text"/></td>
             </tr>
-            
+
             <tr colspan='2'>
                 <td colspan='2' align='center'>
                     <input type="submit" value="créer" />

@@ -4,8 +4,14 @@ session_start();
 
 
 //nombre de places choisie en variable de session
-if (!isset($_GET['page'])){
-$_SESSION['nbPlaces'] = $_POST['nbplaces2'];}
+if (!isset($_GET['page'])) {
+    $_SESSION['nbPlaces'] = $_POST['nbplaces2'];
+}
+
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+
+    header("Location:../index.php");
+}
 
 
 //récapitulatif de la réservation
@@ -57,7 +63,7 @@ echo"<table>
     </tr>
     <tr colspan='2'>
         <td>
-            <form id='form' method='post' action='modele/reservationsql.php'>
+            <form id='form' method='post' action='bdd/reservationsql.php'>
                 <input type='submit' value='Confirmer la réservation'/>
             </form>
         </td>
@@ -67,8 +73,8 @@ echo"<table>
 
 
 //Si la reservation est effectuée, on confirme.
- if (isset($_GET['page'])) {
-        if ($_GET['page'] == 'succes') {
-            echo"<font color='green'>La réservation a été prise en compte.</font>";
-        }
+if (isset($_GET['page'])) {
+    if ($_GET['page'] == 'succes') {
+        echo"<font color='green'>La réservation a été prise en compte.</font>";
     }
+}

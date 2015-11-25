@@ -4,7 +4,11 @@
 <?php
 session_start(); //démarrage session
 //Requête pour vérifier si l'herbergement sélectionné est déjà réservé ou non
-include 'modele/sql.php';
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+
+    header("Location:../index.php");
+}
+include 'bdd/sql.php';
 $req = "SELECT resa.DATEDEBSEM, resa.NOHEB
                 FROM resa, hebergement
                 WHERE resa.NOHEB = hebergement.NOHEB

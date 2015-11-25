@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,7 +16,7 @@ and open the template in the editor.
         if (isset($_SESSION['TYPECOMPTE']) && $_SESSION['TYPECOMPTE'] == 'adm') { //si une session est crée et selon le type de compte
             header('Location: admin.php'); //redirection vers la page d'acceuil de ce type d'user
         } elseif (isset($_SESSION['TYPECOMPTE']) && $_SESSION['TYPECOMPTE'] == 'vil') {
-            header('Location: reservation.php');
+            header('Location: villageois/index.php');
         } elseif (isset($_SESSION['TYPECOMPTE']) && $_SESSION['TYPECOMPTE'] == 'ges') {
             header('Location: gestion/gestion.php');
         }
@@ -33,7 +28,7 @@ and open the template in the editor.
 
         <!--formulaire de connexion-->
         <TABLE>
-            <FORM id="formulaire" method="post" action="modele/connexion.php" onsubmit="return VerificationChamps()"> 
+            <FORM id="formulaire" method="post" action="bdd/connexion.php" onsubmit="return VerificationChamps()"> 
                 <tr>
                     <td>
                         Nom d'utilisateur : 

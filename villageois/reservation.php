@@ -6,8 +6,12 @@
 
 <?php
 session_start(); //démarrage session
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+
+    header("Location:../index.php");
+}
 // on vérifie que le login et le mot de passe existent dans la bdd
-include 'modele/sql.php';
+include 'bdd/sql.php';
 $req = "SELECT NOMHEB, (SELECT count(*) FROM HEBERGEMENT) as nb
                 FROM hebergement"; //recupère le nom des hébergements
 $res = mysqli_query($con, $req);
@@ -27,7 +31,11 @@ $ligne = mysqli_fetch_array($res);
                     <select name="hebergement">
                         <?php
                         for ($i = 0; $i < $ligne['nb']; $i++) { //pour chaque ligne de résultat
-                            echo '<option>' . $ligne['NOMHEB'] . '</option>'; //le nom de l'hebergement dans la liste
+                            if (isset($_GET['heb']) && $_GET['heb'] == $ligne['NOMHEB']) {
+                                echo "<option selected>" . $ligne['NOMHEB'] . "</option>";
+                            } else {
+                                echo "<option>" . $ligne['NOMHEB'] . "</option>"; //le nom de l'hebergement dans la liste
+                            }
                             $ligne = mysqli_fetch_array($res); //on passe à la ligne suivante
                         }
                         ?>
@@ -42,7 +50,7 @@ $ligne = mysqli_fetch_array($res);
             $ligne2 = mysqli_fetch_array($res2);
             $nb = $ligne2['nb'];
             $date = date("Y-m-d");
-                    ?>
+            ?>
 
             <tr>
                 <td>
@@ -52,8 +60,8 @@ $ligne = mysqli_fetch_array($res);
                     <select name="semaine">
                         <?php
                         for ($i = 0; $i < $nb; $i++) { //pour chaque ligne de résultat
-                            if($ligne2['DATEDEBSEM'] > $date){
-                            echo '<option>' . $ligne2['DATEDEBSEM'] . ' au ' . $ligne2['DATEFINSEM'] . '</option>'; //le nom de l'hebergement dans la liste
+                            if ($ligne2['DATEDEBSEM'] > $date) {
+                                echo '<option>' . $ligne2['DATEDEBSEM'] . ' au ' . $ligne2['DATEFINSEM'] . '</option>'; //le nom de l'hebergement dans la liste
                             }
                             $ligne2 = mysqli_fetch_array($res2); //on passe à la ligne suivante
                         }
@@ -71,7 +79,7 @@ $ligne = mysqli_fetch_array($res);
 
 
     <?php
-    //si ?erreur= dans le lien, on affiche une erreura
+//si ?erreur= dans le lien, on affiche une erreura
     if (isset($_GET['erreur'])) {
         if ($_GET['erreur'] == 'nondispo') {
             echo"<font color='red'>Malheuresement, cet hébergement n'est pas disponibles à la date demandée</font>";

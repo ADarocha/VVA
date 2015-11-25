@@ -7,7 +7,7 @@ $codeSaison = 1;
 
 
 //script
-include 'modele/sql.php';
+include 'bdd/sql.php';
 $date = date($datedebut);
 $temps2 = strtotime(date("Y-m-d", strtotime($date)) . " +7 day");
 $date2 = date("Y-m-d", $temps2);
