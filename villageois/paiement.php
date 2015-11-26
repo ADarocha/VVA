@@ -1,7 +1,7 @@
-
-
-
 <?php
+$titre = "Paiement";
+$arriere = "../";
+include "../design/top.php";
 include '../bdd/sql.php';
 
 if (!isset($_GET['heb']) || !isset($_GET['dt']) || !isset($_GET['etape'])) {
@@ -12,10 +12,10 @@ if (!isset($_GET['heb']) || !isset($_GET['dt']) || !isset($_GET['etape'])) {
     }
 }
 
-if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+/*if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
 
     header("Location:../index.php");
-}
+}*/
 
 switch ($_GET['etape']) {
     case "at":
@@ -31,17 +31,25 @@ $req = "UPDATE resa SET CODEETATRESA = '" . $suivant . "' WHERE NOHEB = " . $_GE
 $res = mysqli_query($con, $req);
 ?>
 
+</br></br>
+<div class='container' align='center'> 
+    <table class='tableau'>
+        <tr>
+            <td>
+                Paiement accepté ! 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href='index.php'>revenir en arrière.</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</br>
+</br>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Resa_VVA - Paiement réussi</title>
-    <script src="jscss/fonctions.js"></script>
-    <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-</head>
 
-<body>
-
-    Paiement accepté ! 
-    <a href='index.php'>revenir en arrière.</a>
-
-</body>
+<?php
+include'../design/footer.php';
+?>

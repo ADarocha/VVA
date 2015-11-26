@@ -1,15 +1,7 @@
-<head>
-        <meta charset="UTF-8">
-        <title>Résultat de la recherche</title>
-        <script src="jscss/fonctions.js"></script>
-        <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-
-</head>
-
-
 <?php
-
-session_start(); //démarrage session
+$titre = "VVA - Acceuil";
+$arriere = "";
+include "design/top.php";
 include 'bdd/sql.php'; //connexion à la bdd
 $req = " SELECT * 
     FROM HEBERGEMENT, TARIF, TYPE_HEB
@@ -40,7 +32,9 @@ if (mysqli_num_rows($res) == 0) {
 else
 {
     for ($i = 0; $i < count($ligne) / 2; $i++) {
-            echo"        <table border='1'>
+            echo"</br>
+                <div class='container' align='center'>   
+                <table border='1' class='tableau'>
             <tr>
                 <td>Nom :</td>
                 <td>" . $ligne['NOMHEB'] . "</td>
@@ -117,9 +111,12 @@ else
             echo "</td>
             </tr>
             </tr>
-            </table>";
+            </table>
+            </div>";
             $ligne = mysqli_fetch_array($res);
             echo"</br>";
 }
 }
+
+include 'design/footer.php';
 ?>

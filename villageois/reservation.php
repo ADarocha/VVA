@@ -1,27 +1,24 @@
-<head>
-    <meta charset="UTF-8">
-</head>
-
-
-
 <?php
-session_start(); //démarrage session
-if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+$titre = "Reservation";
+$arriere = "../";
+include "../design/top.php";
 
-    header("Location:../index.php");
-}
+/* if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+
+  header("Location:../index.php");
+  } */
+
+
 // on vérifie que le login et le mot de passe existent dans la bdd
-include 'bdd/sql.php';
+include '../bdd/sql.php';
 $req = "SELECT NOMHEB, (SELECT count(*) FROM HEBERGEMENT) as nb
                 FROM hebergement"; //recupère le nom des hébergements
 $res = mysqli_query($con, $req);
 $ligne = mysqli_fetch_array($res);
 ?>
-
-
-
-<body>
-    <TABLE>
+</br></br>
+<div class='container' align='center'>  
+    <table>
         <FORM id="formulaire" method="post" action="verifresa.php" onsubmit="return VerificationChamps()"> 
             <tr>
                 <td>
@@ -73,18 +70,27 @@ $ligne = mysqli_fetch_array($res);
                 <td>
                     <input type="submit" value="Vérifier la réservation" />
                 </td>
+            <tr colspan="2">
+                <td>
+                    <?php
+                    //si ?erreur= dans le lien, on affiche une erreura
+                    if (isset($_GET['erreur'])) {
+                        if ($_GET['erreur'] == 'nondispo') {
+                            echo"<font color='red'>Malheuresement, cet hébergement n'est pas disponibles à la date demandée</font></br>";
+                            echo"<a href='index.php'>Retour au menu client.</a>";
+                        }
+                    }
+                    ?>
+                </td>
             </tr>
-        </FORM>
-    </TABLE>
+            <tr
+    </FORM>
+</table>
+</div>
+</br>
+</br>
 
 
-    <?php
-//si ?erreur= dans le lien, on affiche une erreura
-    if (isset($_GET['erreur'])) {
-        if ($_GET['erreur'] == 'nondispo') {
-            echo"<font color='red'>Malheuresement, cet hébergement n'est pas disponibles à la date demandée</font>";
-        }
-    }
-    ?>
-
-</body>
+<?php
+include '../design/footer.php';
+?>

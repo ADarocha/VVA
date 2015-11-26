@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Resa_VVA</title>
-        <script src="jscss/fonctions.js"></script>
-        <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
+<?php
 
-    </head>
-    
-
-    
-    <?php
-        session_start(); //creation de session
+$titre = "Administration de VVA";
+$arriere = "../";
+include "../design/top.php";
 
         if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != 'adm') {
             header('Location: ../index.php');
@@ -19,19 +10,17 @@
     ?>
     
 
-    
-    <body>
-        <TABLE>
-        <tr>
-            <td>
-                <a href='creercompte.php'>Créer un nouvel utilisateur</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href='voircomptes.php'>Voir / supprimer / modifier un utilisateur</a>
-            </td>
-        </tr>
-    </TABLE>
-    </body>
-</html>
+</br></br>
+<div class='container' align='center'>  
+                <ul class="actions">
+                    <li><a href="creercompte.php" class="button">Enregistrer un nouvel utilisateur</a></li>
+                    </br>
+                    <li><a href="voircomptes.php" class="button">Gérer les utilisateurs</a></li>
+                    </br>
+                </ul>
+
+</div></br></br>
+
+<?php
+include'../design/footer.php';
+?>

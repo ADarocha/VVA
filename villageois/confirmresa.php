@@ -1,6 +1,9 @@
-<meta charset="UTF-8">
 <?php
-session_start();
+
+$titre = "Confirmez votre réservation";
+$arriere = "../";
+include "../design/top.php";
+include '../bdd/sql.php';
 
 
 //nombre de places choisie en variable de session
@@ -8,14 +11,16 @@ if (!isset($_GET['page'])) {
     $_SESSION['nbPlaces'] = $_POST['nbplaces2'];
 }
 
-if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+/* if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
 
-    header("Location:../index.php");
-}
+  header("Location:../index.php");
+  } */
 
 
 //récapitulatif de la réservation
-echo"<table>
+echo"</br></br>
+<div class='container' align='center'>  
+    <table class='tableau'>
     <tr colspan='2'>
         <td>
             Récapitulatif :
@@ -63,18 +68,27 @@ echo"<table>
     </tr>
     <tr colspan='2'>
         <td>
-            <form id='form' method='post' action='bdd/reservationsql.php'>
+            <form id='form' method='post' action='../bdd/reservationsql.php'>
                 <input type='submit' value='Confirmer la réservation'/>
             </form>
         </td>
     </tr>
-</table>";
-
-
-
+    <tr colspan='2'>
+        <td>";
 //Si la reservation est effectuée, on confirme.
 if (isset($_GET['page'])) {
     if ($_GET['page'] == 'succes') {
-        echo"<font color='green'>La réservation a été prise en compte.</font>";
+        echo"<font color = 'green'>La réservation a été prise en compte.</font > ";
     }
 }
+echo"</td>
+    </tr>
+    
+</table>
+</div></br></br>";
+
+
+
+
+
+include'../design/footer.php';

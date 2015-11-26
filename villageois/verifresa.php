@@ -1,14 +1,15 @@
-<meta charset="UTF-8">
+<?php 
+$titre = "Verification de la réservation";
+$arriere = "../";
+include "../design/top.php";
+include '../bdd/sql.php';
 
 
-<?php
-session_start(); //démarrage session
 //Requête pour vérifier si l'herbergement sélectionné est déjà réservé ou non
-if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
+/*if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
 
     header("Location:../index.php");
-}
-include 'bdd/sql.php';
+}*/
 $req = "SELECT resa.DATEDEBSEM, resa.NOHEB
                 FROM resa, hebergement
                 WHERE resa.NOHEB = hebergement.NOHEB
@@ -73,7 +74,10 @@ else {
 
 
     //affichage du formulaire
-    echo"<table>
+    echo"
+        </br></br>
+<div class='container' align='center'>  
+<table class='tableau'>
     <form id='form' method='post' action='confirmresa.php'>
     <tr>
         <td>
@@ -96,5 +100,10 @@ else {
         </td>
     </tr>
     </form>
-    </table>";
+    </table>
+    </div>
+    </br></br>";
 }
+
+  include'../design/footer.php';
+        ?>

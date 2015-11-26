@@ -15,12 +15,12 @@ if (mysqli_num_rows($res) == 0) {
     header('Location: ../index.php?page="erreur"');
 } else {//sinon on va sur notre page
     if ($ligne['TYPECOMPTE'] == "ges") {
-        $_SESSION['LOGIN'] = $ligne['LOGIN'];
+        $_SESSION['LOGIN'] = $ligne['USER'];
         $_SESSION['TYPECOMPTE'] = $ligne['TYPECOMPTE'];
         header('Location: ../gestion/');        
         
     } elseif ($ligne['TYPECOMPTE'] == "vil") {
-        $_SESSION['LOGIN'] = $ligne['LOGIN'];
+        $_SESSION['LOGIN'] = $ligne['USER'];
         $_SESSION['TYPECOMPTE'] = $ligne['TYPECOMPTE'];
         //requete pour récupérer le numéro du villageois
         $req2 = "SELECT NOVILLAGEOIS
@@ -33,7 +33,7 @@ if (mysqli_num_rows($res) == 0) {
         header('Location: ../villageois/');
         
     } elseif ($ligne['TYPECOMPTE'] == "adm") {
-        $_SESSION['LOGIN'] = $ligne['LOGIN'];
+        $_SESSION['LOGIN'] = $ligne['USER'];
         $_SESSION['TYPECOMPTE'] = $ligne['TYPECOMPTE'];
         header('Location: ../admin/');
     }

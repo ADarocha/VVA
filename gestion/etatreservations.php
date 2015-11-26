@@ -1,20 +1,14 @@
+<?php
+$titre = "Etat des réservations";
+$arriere = "../";
+include "../design/top.php";
 
-
-<head>
-    <meta charset="UTF-8">
-    <title>Resa_VVA - Gestion : réservations</title>
-    <script src="jscss/fonctions.js"></script>
-    <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-</head>
-<body>
-
-    <?php
     if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 
         header("Location:../index.php");
     }
 
-    session_start();
+   
 
     include '../bdd/sql.php';
 
@@ -24,8 +18,9 @@
     $ligne = mysqli_fetch_array($res);
     ?>
 
-
-    <table border='1'>
+</br></br>
+<div class='container' align='center'>  
+    <table class='tableau'>
         <tr>
             <td>Nom :</td>
             <td>Prénom :</td>
@@ -90,5 +85,11 @@
             $ligne = mysqli_fetch_array($res);
         }
         ?>
-    </table>
-</body>
+        
+        
+    </table></div>
+</br></br>
+
+<?php
+include'../design/footer.php';
+?>

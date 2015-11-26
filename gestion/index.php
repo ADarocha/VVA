@@ -1,40 +1,27 @@
+<?php
+$titre = "Acceuil gestionnaire";
+$arriere = "../";
+include "../design/top.php";
 
 
-<head>
-    <meta charset="UTF-8">
-    <title>Resa_VVA - Menu de gestion</title>
-    <script src="jscss/fonctions.js"></script>
-    <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-</head>
-<body>
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 
-    <?php
-    session_start();
-    if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
+    header("Location:../index.php");
+}
+?>
+</br></br>
+<div class='container' align='center'>  
+                <ul class="actions">
+                    <li><a href="creerheb.php" class="button">Enregistrer un nouvel hébergement</a></li>
+                    </br>
+                    <li><a href="../hebergements.php" class="button">Consulter / Modifier les hébergements</a></li>
+                    </br>
+                    <li><a href="etatreservations.php" class="button">Consulter / Modifier les réservations</a></li>
+                    </br>
+                </ul>
 
-        header("Location:../index.php");
-    }
-    ?>
+</div></br></br>
 
-    <TABLE>
-        <tr>
-            <td>
-                <a href='creerheb.php'>Créer un nouvel hébergement</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href='../hebergements.php'>Consulter / Modifier les hébergements</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href='etatreservations.php'>Consulter / Modifier les réservations</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-        </tr>
-    </TABLE>
-</body>
+<?php
+include'../design/footer.php';
+?>

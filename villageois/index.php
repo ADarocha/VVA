@@ -1,24 +1,18 @@
+<?php
+$titre = "Acceuil villageois";
+$arriere = "../";
+include "../design/top.php";
+include '../bdd/sql.php';
+if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
 
-
-<head>
-    <meta charset="UTF-8">
-    <title>Resa_VVA - Menu de villageois</title>
-    <script src="jscss/fonctions.js"></script>
-    <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-</head>
-<body>
-
-    <?php
-    session_start();
-    include '../bdd/sql.php';
-    if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "vil") {
-
-        header("Location:../index.php");
-    }
-    ?>
-
-
-    <table border='1'>
+    header("Location:../index.php");
+}
+?>
+</br></br>
+<div class='container' align='center'>  
+    Vos réservations :
+    </br>
+    <table border='1' class='tableau'>
         <tr>
             <td>Hébergement :</td>
             <td>Dû :</td>
@@ -76,5 +70,10 @@
             ";
             $ligne = mysqli_fetch_array($res);
         }
+        echo"</table>
+        </div>
+        </br>
+        </br>";
+
+        include'../design/footer.php';
         ?>
-</body>

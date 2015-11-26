@@ -1,14 +1,10 @@
-<head>
-    <meta charset="UTF-8">
-    <script src="jscss/fonctions.js"></script>
-    <title>Resa_VVA - Créer un compte</title>
-    <link rel=STYLESHEET href="jscss/style.css" type="text/css">
-</head>
-
-
-
 <?php
-session_start();
+
+$titre = "Administration de VVA";
+$arriere = "../";
+include "../design/top.php";
+
+
 if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != 'adm') { //si une session est crée et selon le type de compte
     header('Location: ../index.php'); //redirection vers la page d'acceuil de ce type d'user
 }
@@ -18,8 +14,9 @@ if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != 'adm') { //si 
 <!--formulaire de création d'un utilisateur !-->
 
 
-
-<TABLE>
+</br></br>
+<div class='container' align='center'> 
+<TABLE class='tableau'>
     <FORM id="formulaire" method="post" action="../bdd/inscription.php" onsubmit="return VerificationChamps()"> 
         <tr colspan="2"> Création d'un compte utilisateur : </tr>
         <tr>
@@ -104,3 +101,9 @@ if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != 'adm') { //si 
         </tr>
     </FORM>
 </TABLE>
+</div> 
+</br></br>
+
+<?php
+include'../design/footer.php';
+?>

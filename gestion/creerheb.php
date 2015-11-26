@@ -1,24 +1,19 @@
 <?php
-//création d'hébergement
-session_start();
+$titre = "Inscrire un nouvel hébergement";
+$arriere = "../";
+include "../design/top.php";
+
+
 include '../bdd/sql.php';
 if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 
     header("Location:../index.php");
 }
 ?>
-
-
-<head>
-    <meta charset="UTF-8">
-    <title>Resa_VVA - Création d'hébergement</title>
-    <script src="../jscss/fonctions.js"></script>
-    <link rel=STYLESHEET href="../jscss/style.css" type="text/css">
-</head>
-
-<body>
+</br></br>
+<div class='container' align='center'>  
     <form id="creer" method="post" action="../bdd/creaheb.php">
-        <table>
+        <table class='tableau'>
             <tr>
                 <td colspan='2' align='center'>
                     Création d'un hebergement
@@ -130,4 +125,11 @@ if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
             </tr>
         </table>
     </form>
-</body>
+</div>
+</br>
+</br>
+
+
+<?php
+include'../design/footer.php';
+?>

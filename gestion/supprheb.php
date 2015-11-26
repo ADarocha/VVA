@@ -1,7 +1,9 @@
 <?php
+$titre = "supprimer un hébergement";
+$arriere = "../";
+include "../design/top.php";
 
-//création d'hébergement
-session_start();
+
 include '../bdd/sql.php';
 if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 
@@ -9,14 +11,6 @@ if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 }
 $heb = $_GET['heb'];
 
-
-echo"
-<head>
-    <meta charset='UTF-8'>
-    <title>Resa_VVA - suppression de " . $heb . " </title>
-    <script src='../jscss/fonctions.js'></script>
-    <link rel=STYLESHEET href='../jscss/style.css' type='text/css'>
-</head>";
 
 $req = "SELECT RESA.DATEDEBSEM, RESA.NOHEB FROM RESA, HEBERGEMENT WHERE HEBERGEMENT.NOHEB = RESA.NOHEB AND HEBERGEMENT.NOMHEB = '" . $heb . "'";
 $res = mysqli_query($con, $req);
@@ -30,14 +24,30 @@ for ($i = 0; $i < count($ligne); $i++) {
     }
     $ligne = mysqli_fetch_array($res);
 }
+?>
+</br></br>
+<div class='container' align='center'>  
+    <TABLE class='tableau'>
+        <tr>
+            <td>
+                <?php
+                if ($resa > 0) {
+                    echo"Il existe des réservations en cours ou à venir pour cet hébergement, vous ne pouvez donc pas le supprimer.";
+                } else {
+                    $req2 = "DELETE FROM HEBERGEMENT WHERE NOMHEB = '" . $heb . "'";
+                    $res2 = mysqli_query($con, $req2);
+                    $req3 = "DELETE FROM RESERVATION WHERE NOHEB = " . $ligne['NOHEB'];
+                    $res3 = mysqli_query($con, $req3);
+                    echo "L'hébergment et toute les réservations enregistrées ont été supprimées";
+                }
+                ?>
+            </td>
+        </tr>
+    </table>
+</div>
+</br></br>
 
-if ($resa > 0) {
-    echo"Il existe des réservations en cours ou à venir pour cet hébergement, vous ne pouvez donc pas le supprimer.";
-} else {
-    $req2 = "DELETE FROM HEBERGEMENT WHERE NOMHEB = '" . $heb . "'";
-    $res2 = mysqli_query($con, $req2);
-    $req3 = "DELETE FROM RESERVATION WHERE NOHEB = " . $ligne['NOHEB'];
-    $res3 = mysqli_query($con, $req3);
-    echo "L'hébergment et toute les réservations enregistrées ont été supprimées";
-}
+
+<?php
+include'../design/footer.php';
 ?>

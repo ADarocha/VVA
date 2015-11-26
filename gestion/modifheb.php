@@ -1,6 +1,9 @@
 <?php
-//création d'hébergement
-session_start();
+$titre = "Modifier un hébergement";
+$arriere = "../";
+include "../design/top.php";
+
+
 include '../bdd/sql.php';
 if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 
@@ -8,14 +11,6 @@ if (!isset($_SESSION['TYPECOMPTE']) || $_SESSION['TYPECOMPTE'] != "ges") {
 }
 $heb = $_GET['heb'];
 
-
-echo"
-<head>
-    <meta charset='UTF-8'>
-    <title>Resa_VVA - Modifier " . $heb . " </title>
-    <script src='../jscss/fonctions.js'></script>
-    <link rel=STYLESHEET href='../jscss/style.css' type='text/css'>
-</head>";
 
 $req = "SELECT * FROM HEBERGEMENT, TARIF, TYPE_HEB 
 WHERE HEBERGEMENT.NOHEB = TARIF.NOHEB 
@@ -26,9 +21,11 @@ $res = mysqli_query($con, $req);
 $ligne = mysqli_fetch_array($res);
 ?>
 
-<body>
+
+</br></br>
+<div class='container' align='center'>  
     <form id="creer" method="post" action="../bdd/modifierheb.php?heb=<?php echo $heb; ?>">
-        <table>
+        <table class='tableau'>
             <tr>
                 <td colspan='2' align='center'>
                     modification de <?php echo $ligne['NOMHEB']; ?>
@@ -154,4 +151,11 @@ $ligne3 = mysqli_fetch_array($res3);
             </tr>
         </table>
     </form>
-</body>
+</div> 
+</br>
+</br>
+
+
+<?php
+include'../design/footer.php';
+?>

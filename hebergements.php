@@ -1,19 +1,7 @@
-
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Resa_VVA - Nos offres</title>
-        <script src="jscss/fonctions.js"></script>
-        <LINK rel=STYLESHEET href="jscss/style.css" type="text/css">
-
-    </head>
-
-    <body>
-
-
-
-        <?php
-        session_start();
+<?php
+$titre = "VVA - Acceuil";
+$arriere = "";
+include "design/top.php";
         include 'bdd/sql.php';
 
 
@@ -22,9 +10,10 @@
         $ligne = mysqli_fetch_array($res);
 
 
-
         for ($i = 0; $i < count($ligne) / 2; $i++) {
-            echo"        <table border='1'>
+            echo"</br>
+                <div class='container' align='center'>        
+                <table border='1' class='tableau'>
             <tr>
                 <td>Nom :</td>
                 <td>" . $ligne['NOMHEB'] . "</td>
@@ -110,10 +99,11 @@
             echo "</td>
             </tr>
             </tr>
-            </table>";
+            </table>
+            </div>";
             $ligne = mysqli_fetch_array($res);
             echo"</br>";
         }
-        ?>
-    </body>
-</html>
+
+        
+        include'design/footer.php';?>
